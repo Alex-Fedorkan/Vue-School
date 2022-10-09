@@ -9,6 +9,7 @@
           :raiting="apartment.raiting"
           :imgSrc="apartment.imgUrl"
           :price="apartment.price"
+          @click.native="handleItemClick(1, $event)"
         />
       </template>
     </ApartmentsList>
@@ -28,6 +29,11 @@ export default {
     return {
       apartments,
     };
+  },
+  methods: {
+    handleItemClick(index, event) {
+      console.log(index, ' Item App click ', event);
+    },
   },
 };
 </script>
