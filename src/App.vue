@@ -1,5 +1,7 @@
 <template>
   <div :id="$style.app">
+    <h2>{{ text }}</h2>
+    <CustomInput type="text" v-model="text" />
     <ApartmentsList :items="apartments">
       <template v-slot:title>New Title</template>
       <template v-slot:apartment="{ apartment }">
@@ -19,14 +21,16 @@
 <script>
 import ApartmentsList from './components/Apartment/ApartmentsList.vue';
 import ApartmentsItem from './components/Apartment/ApartmentsItem.vue';
+import CustomInput from './components/shared/CustomInput.vue';
 
 import apartments from './components/Apartment/apartments';
 
 export default {
   name: 'App',
-  components: { ApartmentsList, ApartmentsItem },
+  components: { ApartmentsList, ApartmentsItem, CustomInput },
   data() {
     return {
+      text: '',
       apartments,
     };
   },
