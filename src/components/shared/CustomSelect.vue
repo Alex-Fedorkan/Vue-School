@@ -1,6 +1,11 @@
 <template>
   <select class="custom-select" v-on="listeners">
-    <option v-for="item in formatedItems" :key="item.value" :value="item.value">
+    <option
+      v-for="item in formatedItems"
+      :key="item.value"
+      :value="item.value"
+      :selected="item.selected"
+    >
       {{ item.label }}
     </option>
   </select>

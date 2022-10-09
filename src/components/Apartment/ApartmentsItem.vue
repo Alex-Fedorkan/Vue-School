@@ -51,7 +51,7 @@ export default {
 
   margin-bottom: 30px;
   padding: 0 15px;
-  max-width: 300px;
+  width: 33.333%;
 
   &__inner {
     position: relative;
@@ -74,6 +74,7 @@ export default {
     transition: opacity 0.4s;
 
     z-index: 1;
+
     cursor: pointer;
 
     &:hover {
@@ -106,6 +107,15 @@ export default {
     height: 100%;
 
     object-fit: cover;
+  }
+
+  &__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

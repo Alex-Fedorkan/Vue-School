@@ -18,9 +18,15 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/scss/variables';
+.wrapper-input {
+  position: relative;
+
+  display: inline-flex;
+}
 .custom-input {
   padding: 8px 15px;
-  min-height: 40px;
+  height: 40px;
+  width: 100%;
 
   font-size: 18px;
   line-height: inherit;
