@@ -38,6 +38,7 @@ export default {
 .apartments-item {
   position: relative;
 
+  margin-bottom: 30px;
   padding: 0 15px;
   max-width: 300px;
 
