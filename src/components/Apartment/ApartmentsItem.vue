@@ -8,12 +8,10 @@
           <StarRating :rating="rating" />
         </div>
         <div class="apartments-item__price">UAH {{ price }}</div>
-        <a
-          href="https://facebook.com"
-          @click.prevent.stop="handleLinkClick(2, $event)"
-        >
-          Facebook
-        </a>
+        <router-link
+          :to="{ name: 'apartment' }"
+          class="apartments-item__link"
+        />
       </div>
     </div>
   </div>
@@ -36,11 +34,6 @@ export default {
     },
     price: { type: Number, required: true },
     imgSrc: { type: String, default: '' },
-  },
-  methods: {
-    handleLinkClick(index, event) {
-      console.log(index, ' facebook clicked ', event);
-    },
   },
 };
 </script>
