@@ -26,5 +26,13 @@ export default {
   width: 100%;
 
   background: $secondary-color;
+
+  z-index: 100;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 </style>

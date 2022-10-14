@@ -56,10 +56,10 @@ export default {
 
 .star {
   margin: 0 3px;
-  display: inline-flex;
-  flex-shrink: 0;
   width: 16px;
   height: 16px;
+  display: inline-flex;
+  flex-shrink: 0;
 
   &--colored {
     background: url('../../public/img/star-yellow.svg') center no-repeat;

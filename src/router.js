@@ -2,6 +2,7 @@ import VueRouter from 'vue-router';
 
 import HomePage from './pages/HomePage';
 import ApartmentPage from './pages/ApartmentPage';
+import ErrorPage from './pages/ErrorPage';
 import Foo from './pages/Foo';
 import Bar from './pages/Bar';
 
@@ -15,14 +16,19 @@ const routes = [
     component: Bar,
   },
   {
-    path: '/',
-    component: HomePage,
-    name: 'homepage',
-  },
-  {
-    path: '/apartment',
+    path: '/apartment/:id',
     component: ApartmentPage,
     name: 'apartment',
+  },
+  {
+    path: '/',
+    component: HomePage,
+    name: 'home-page',
+  },
+  {
+    path: '*',
+    component: ErrorPage,
+    name: 'error-page',
   },
 ];
 

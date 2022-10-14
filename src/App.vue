@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 #app {
-  min-height: 10vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 
@@ -32,7 +32,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 .content {
-  padding-top: 120px;
   flex-grow: 1;
 }
 </style>
