@@ -1,6 +1,10 @@
 <template>
   <header class="header">
-    <Container><Logo /></Container>
+    <Container>
+      <router-link :to="{ name: 'home-page' }">
+        <Logo />
+      </router-link>
+    </Container>
   </header>
 </template>
 

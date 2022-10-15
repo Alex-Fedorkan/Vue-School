@@ -37,9 +37,23 @@ export default {
       );
     },
   },
+  beforeCreate() {
+    console.log('---beforeCreated', this.reviewsList);
+  },
+  created() {
+    console.log('---created', this.reviewsList);
+  },
+  beforeMount() {
+    console.log('---beforeMount', this.$el);
+  },
   mounted() {
-    this.$router;
-    this.$route;
+    console.log('---mounted', this.$el);
+  },
+  beforeDestroy() {
+    console.log('---beforeDestroyed', this.$el);
+  },
+  destroyed() {
+    console.log('---destroyed', this.$el);
   },
 };
 </script>

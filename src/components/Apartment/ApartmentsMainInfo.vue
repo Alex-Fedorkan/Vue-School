@@ -11,9 +11,10 @@
 
 <script>
 import Rating from '../StarRating.vue';
+
 export default {
   name: 'ApartmentsMainInfo',
-  comments: { Rating },
+  components: { Rating },
   props: {
     apartment: { type: Object, required: true },
   },
