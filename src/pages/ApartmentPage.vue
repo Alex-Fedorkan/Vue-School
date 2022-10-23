@@ -1,7 +1,7 @@
 <template>
   <main class="apartment-page">
     <Container>
-      <div class="apartment-page__content">
+      <div v-if="apartment" class="apartment-page__content">
         <ApartmentsMainInfo :apartment="apartment" />
         <div class="apartment-page__additional-info">
           <ApartmentsOwner
@@ -20,40 +20,28 @@ import Container from '../components/shared/Container.vue';
 import ApartmentsMainInfo from '../components/Apartment/ApartmentsMainInfo.vue';
 import ApartmentsOwner from '../components/Apartment/ApartmentsOwner.vue';
 import Reviews from '../components/Reviews';
+import { getApartmentById } from '@/services/apartments.service';
 
-import apartments from '../components/Apartment/apartments';
 import reviewsList from '../components/Reviews/reviews.json';
 
 export default {
   name: 'ApartmentPage',
   components: { Container, ApartmentsMainInfo, ApartmentsOwner, Reviews },
+  data() {
+    return { apartment: null };
+  },
   computed: {
     reviewsList() {
       return reviewsList;
     },
-    apartment() {
-      return apartments.find(
-        (apartment) => apartment.id === this.$route.params.id,
-      );
-    },
   },
-  beforeCreate() {
-    console.log('---beforeCreated', this.reviewsList);
-  },
-  created() {
-    console.log('---created', this.reviewsList);
-  },
-  beforeMount() {
-    console.log('---beforeMount', this.$el);
-  },
-  mounted() {
-    console.log('---mounted', this.$el);
-  },
-  beforeDestroy() {
-    console.log('---beforeDestroyed', this.$el);
-  },
-  destroyed() {
-    console.log('---destroyed', this.$el);
+  async created() {
+    try {
+      const { data } = await getApartmentById(this.$route.params.id);
+      this.apartment = data;
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
 </script>
