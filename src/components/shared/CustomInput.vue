@@ -1,16 +1,49 @@
 <template>
-  <input class="custom-input" v-on="listeners" />
+  <div class="wrapper-input">
+    <input
+      class="custom-input"
+      v-on="listeners"
+      v-bind="$attrs"
+      :class="!isValid && 'custom-input--error'"
+    />
+    <span class="custom-input__error" v-if="!isValid">{{ error }}</span>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'CustomInput',
+  inheritAttrs: false,
+  props: {
+    value: { type: String, default: '' },
+    errorMessage: { type: String, default: '' },
+    rules: { type: Array, default: () => [] },
+  },
+  data() {
+    return { isValid: true, error: '' };
+  },
   computed: {
     listeners() {
       return {
         ...this.$listeners,
         input: (event) => this.$emit('input', event.target.value),
       };
+    },
+  },
+  watch: {
+    value(value) {
+      this.validate(value);
+    },
+  },
+  methods: {
+    validate(value) {
+      this.isValid = this.rules.every((rule) => {
+        const { hasPassed, message } = rule(value);
+
+        if (!hasPassed) this.error = message || this.errorMessage;
+
+        return hasPassed;
+      });
     },
   },
 };
