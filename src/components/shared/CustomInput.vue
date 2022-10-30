@@ -22,6 +22,7 @@ export default {
   data() {
     return { isValid: true, error: '' };
   },
+  inject: ['form'],
   computed: {
     listeners() {
       return {
@@ -31,19 +32,30 @@ export default {
     },
   },
   watch: {
-    value(value) {
-      this.validate(value);
+    value() {
+      this.validate();
     },
   },
+  mounted() {
+    if (!this.form) return;
+    this.form.registerInput(this);
+  },
+  beforeDestroy() {
+    if (!this.form) return;
+    this.form.unregisterInput(this);
+  },
   methods: {
-    validate(value) {
+    validate() {
       this.isValid = this.rules.every((rule) => {
-        const { hasPassed, message } = rule(value);
+        const { hasPassed, message } = rule(this.value);
 
         if (!hasPassed) this.error = message || this.errorMessage;
 
         return hasPassed;
       });
+    },
+    reset() {
+      this.$emit('input', '');
     },
   },
 };
