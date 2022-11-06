@@ -46,12 +46,13 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 import Form from '../../shared/form';
 import CustomInput from '../../shared/CustomInput.vue';
 import Button from '@/components/shared/Button.vue';
 import AuthContainer from '../AuthContainer.vue';
 import MainTitle from '@/components/shared/MainTitle.vue';
-
 import {
   isRequired,
   emailValidation,
@@ -90,6 +91,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions('auth', ['registerUser']),
     async handleSubmit() {
       const { form } = this.$refs;
       const isFormValid = form.validate();
@@ -99,7 +101,11 @@ export default {
         try {
           this.loading = true;
 
-          await this.$store.dispatch('registration', { name, password, email });
+          await this.registerUser({
+            name,
+            password,
+            email,
+          });
 
           this.$router.push({ name: 'home-page' });
           form.reset();
