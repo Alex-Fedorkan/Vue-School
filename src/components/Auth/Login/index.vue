@@ -20,7 +20,7 @@
         :rules="passwordRules"
         type="password"
       />
-      <Button class="login__btn" type="submit">Вхід</Button>
+      <Button class="login__btn" type="submit" :loading="loading">Вхід</Button>
     </Form>
   </AuthContainer>
 </template>
@@ -43,7 +43,7 @@ export default {
   name: 'LoginForm',
   components: { Form, CustomInput, Button, AuthContainer, MainTitle },
   data() {
-    return { formData: { email: '', password: '' } };
+    return { loading: false, formData: { email: '', password: '' } };
   },
   computed: {
     rules() {
@@ -62,10 +62,13 @@ export default {
 
       if (isFormValid) {
         try {
+          this.loading = true;
           const { data } = await loginUser(this.formData);
           console.log(data);
         } catch (error) {
           console.log('Login error', error);
+        } finally {
+          this.loading = false;
         }
       }
     },

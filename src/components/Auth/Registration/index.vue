@@ -38,7 +38,9 @@
         :rules="confirmPassword"
         type="password"
       />
-      <Button class="registration__btn" type="submit">Вхід</Button>
+      <Button class="registration__btn" type="submit" :loading="loading">
+        Вхід
+      </Button>
     </Form>
   </AuthContainer>
 </template>
@@ -62,6 +64,7 @@ export default {
   components: { Form, CustomInput, Button, AuthContainer, MainTitle },
   data() {
     return {
+      loading: false,
       formData: { name: '', email: '', password: '', confirmPassword: '' },
     };
   },
@@ -95,11 +98,14 @@ export default {
 
       if (isFormValid) {
         try {
+          this.loading = true;
           const { data } = await registerUser({ name, password, email });
           console.log(data);
           form.reset();
         } catch (error) {
           console.log('Register error', error);
+        } finally {
+          this.loading = false;
         }
       }
     },
