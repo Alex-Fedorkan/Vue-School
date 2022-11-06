@@ -22,7 +22,7 @@ export default {
   data() {
     return { isValid: true, error: '' };
   },
-  inject: ['form'],
+  inject: { form: { default: null } },
   computed: {
     listeners() {
       return {
@@ -53,6 +53,7 @@ export default {
 
         return hasPassed;
       });
+      return this.isValid;
     },
     reset() {
       this.$emit('input', '');

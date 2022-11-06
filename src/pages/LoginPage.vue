@@ -1,15 +1,18 @@
 <template>
   <main class="login">
-    <LoginForm />
+    <AuthSection>
+      <LoginForm />
+    </AuthSection>
   </main>
 </template>
 
 <script>
-import LoginForm from '../components/Login/index.vue';
+import AuthSection from '@/components/Auth/AuthSection.vue';
+import LoginForm from '../components/Auth/Login/index.vue';
 
 export default {
   name: 'LoginPage',
-  components: { LoginForm },
+  components: { LoginForm, AuthSection },
 };
 </script>
 
