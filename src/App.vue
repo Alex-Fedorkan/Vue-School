@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import AppHeader from './components/Header.vue';
 import AppFooter from './components/Footer.vue';
 import Notification from './components/Notification';
@@ -20,6 +22,12 @@ export default {
     AppHeader,
     AppFooter,
     Notification,
+  },
+  computed: {
+    ...mapGetters('auth', ['isLoggedIn']),
+  },
+  mounted() {
+    console.log(this.isLoggedIn);
   },
 };
 </script>
