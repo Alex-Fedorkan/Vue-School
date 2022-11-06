@@ -67,6 +67,11 @@ export default {
           console.log(data);
         } catch (error) {
           console.log('Login error', error);
+          this.$notify({
+            type: 'error',
+            title: 'Помилка',
+            text: error.message,
+          });
         } finally {
           this.loading = false;
         }

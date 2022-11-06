@@ -104,6 +104,11 @@ export default {
           form.reset();
         } catch (error) {
           console.log('Register error', error);
+          this.$notify({
+            type: 'error',
+            title: 'Помилка',
+            text: error.message,
+          });
         } finally {
           this.loading = false;
         }
