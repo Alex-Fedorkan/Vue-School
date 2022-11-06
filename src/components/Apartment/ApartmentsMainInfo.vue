@@ -6,17 +6,50 @@
     </div>
     <img :src="apartment.imgUrl" alt="" class="apartment-main-info__photo" />
     <p class="apartment-main-info__description">{{ apartment.descr }}</p>
+    <div class="apartment-main-info__btn">
+      <Button
+        type="button"
+        @click="handleApartmentsBooking"
+        :loading="isLoading"
+      >
+        Забронювати
+      </Button>
+    </div>
   </article>
 </template>
 
 <script>
 import Rating from '../StarRating.vue';
+import Button from '../shared/Button.vue';
+import { bookApartment } from '../../services/orders.service';
 
 export default {
   name: 'ApartmentsMainInfo',
-  components: { Rating },
+  components: { Rating, Button },
   props: {
     apartment: { type: Object, required: true },
+  },
+  data() {
+    return { isLoading: false };
+  },
+  methods: {
+    async handleApartmentsBooking() {
+      const body = { date: Date.now(), apartmentId: this.$route.params.id };
+
+      try {
+        this.isLoading = true;
+        await bookApartment(body);
+        this.$notify({
+          type: 'success',
+          title: 'Замовлення додано',
+        });
+      } catch (error) {
+        console.log('Book apartments error', error);
+        this.$notify({ type: 'error', title: 'Помилка', text: error.message });
+      } finally {
+        this.isLoading = false;
+      }
+    },
   },
 };
 </script>

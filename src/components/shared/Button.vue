@@ -6,7 +6,7 @@
     style="opacity: 0.5"
     :disabled="loading"
   >
-    <CircleLoader v-if="loading" width="38" height="38" />
+    <CircleLoader class="btn__loader" v-if="loading" width="38" height="38" />
     <span class="btn__content" :class="contentStyle">
       <slot></slot>
     </span>
