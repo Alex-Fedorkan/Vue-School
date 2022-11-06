@@ -1,9 +1,7 @@
 import axios from '../utils/axios';
 
-export const loginUser = (payload) => {
-  return axios.post('/users/login', payload);
-};
+export const loginUser = (payload) => axios.post('/users/login', payload);
 
-export const registerUser = (payload) => {
-  return axios.post('/users/register', payload);
-};
+export const registerUser = (payload) => axios.post('/users/register', payload);
+
+export const logout = () => axios.post('/users/logout');
