@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import HomePage from './pages/HomePage';
 import ApartmentPage from './pages/ApartmentPage';
 import LoginPage from './pages/LoginPage';
+import RegistrationPage from './pages/RegistrationPage';
 import ErrorPage from './pages/ErrorPage';
 import Foo from './pages/Foo';
 import Bar from './pages/Bar';
@@ -30,6 +31,11 @@ const routes = [
     path: '/login',
     component: LoginPage,
     name: 'login-page',
+  },
+  {
+    path: '/registration',
+    component: RegistrationPage,
+    name: 'registration-page',
   },
   {
     path: '*',
