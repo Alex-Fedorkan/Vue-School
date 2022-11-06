@@ -51,7 +51,6 @@ import CustomInput from '../../shared/CustomInput.vue';
 import Button from '@/components/shared/Button.vue';
 import AuthContainer from '../AuthContainer.vue';
 import MainTitle from '@/components/shared/MainTitle.vue';
-import { registerUser } from '../../../services/auth.service';
 
 import {
   isRequired,
@@ -99,8 +98,10 @@ export default {
       if (isFormValid) {
         try {
           this.loading = true;
-          const { data } = await registerUser({ name, password, email });
-          console.log(data);
+
+          await this.$store.dispatch('registration', { name, password, email });
+
+          this.$router.push({ name: 'home-page' });
           form.reset();
         } catch (error) {
           console.log('Register error', error);

@@ -31,7 +31,6 @@ import CustomInput from '../../shared/CustomInput.vue';
 import Button from '@/components/shared/Button.vue';
 import AuthContainer from '../AuthContainer.vue';
 import MainTitle from '@/components/shared/MainTitle.vue';
-import { loginUser } from '../../../services/auth.service';
 
 import {
   isRequired,
@@ -58,13 +57,17 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      const isFormValid = this.$refs.form.validate();
+      const { form } = this.$refs;
+      const isFormValid = form.validate();
 
       if (isFormValid) {
         try {
           this.loading = true;
-          const { data } = await loginUser(this.formData);
-          console.log(data);
+
+          await this.$store.dispatch('login', this.formData);
+
+          this.$router.push({ name: 'home-page' });
+          form.reset();
         } catch (error) {
           console.log('Login error', error);
           this.$notify({
